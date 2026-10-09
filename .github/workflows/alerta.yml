@@ -18,6 +18,14 @@ jobs:
       - name: Notificar en ntfy
         run: |
           curl --fail --show-error --silent \
-            -H "Title: Actualizacion en el repositorio" \
-            -d "Se subio codigo a main en $GITHUB_REPOSITORY (commit $GITHUB_SHA)." \
+            -H "Title: 🚀🔥 Cambio detectado en main" \
+            -H "Tags: rocket,github,devops,fire" \
+            -H "Priority: high" \
+            -d "📦 Repositorio: $GITHUB_REPOSITORY
+            🌿 Rama: main
+            🧾 Commit: $GITHUB_SHA
+            ⚡ Evento: push
+            ✅ Estado: Se subio nuevo codigo correctamente.
+            
+            🎉 ¡Todo está funcionando y listo para seguir!" \
             https://ntfy.sh/devops-itla
