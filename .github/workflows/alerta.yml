@@ -1,0 +1,23 @@
+name: Alerta de despliegue
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Ejecutar programa Hola Mundo
+        run: node hola-mundo.js
+
+      - name: Notificar en ntfy
+        run: |
+          curl --fail --show-error --silent \
+            -H "Title: Actualizacion en el repositorio" \
+            -d "Se subio codigo a main en $GITHUB_REPOSITORY (commit $GITHUB_SHA)." \
+            https://ntfy.sh/devops-itla
